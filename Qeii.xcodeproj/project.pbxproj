@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0206B31C2867F9850081342B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206B31B2867F9850081342B /* TestView.swift */; };
+		0206B31E286804120081342B /* AddRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206B31D286804110081342B /* AddRecordView.swift */; };
+		0206B320286898B50081342B /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206B31F286898B50081342B /* Keyboard.swift */; };
 		0210FD912867CDD200E56349 /* QeiiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FD902867CDD200E56349 /* QeiiApp.swift */; };
 		0210FD932867CDD200E56349 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FD922867CDD200E56349 /* ContentView.swift */; };
 		0210FD952867CDD700E56349 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0210FD942867CDD700E56349 /* Assets.xcassets */; };
@@ -18,6 +21,7 @@
 		0210FDB32867CDD700E56349 /* QeiiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDB22867CDD700E56349 /* QeiiUITestsLaunchTests.swift */; };
 		0210FDC02867CEF100E56349 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDBF2867CEF100E56349 /* HomeView.swift */; };
 		0210FDC22867D16800E56349 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDC12867D16700E56349 /* Constants.swift */; };
+		0210FDC52867F61300E56349 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 0210FDC42867F61300E56349 /* PopupView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0206B31B2867F9850081342B /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		0206B31D286804110081342B /* AddRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordView.swift; sourceTree = "<group>"; };
+		0206B31F286898B50081342B /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		0210FD8D2867CDD200E56349 /* Qeii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qeii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0210FD902867CDD200E56349 /* QeiiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QeiiApp.swift; sourceTree = "<group>"; };
 		0210FD922867CDD200E56349 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0210FDC52867F61300E56349 /* PopupView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +117,10 @@
 				0210FD9B2867CDD700E56349 /* Qeii.xcdatamodeld */,
 				0210FD962867CDD700E56349 /* Preview Content */,
 				0210FDBF2867CEF100E56349 /* HomeView.swift */,
+				0206B31D286804110081342B /* AddRecordView.swift */,
+				0206B31F286898B50081342B /* Keyboard.swift */,
 				0210FDC12867D16700E56349 /* Constants.swift */,
+				0206B31B2867F9850081342B /* TestView.swift */,
 			);
 			path = Qeii;
 			sourceTree = "<group>";
@@ -155,6 +166,9 @@
 			dependencies = (
 			);
 			name = Qeii;
+			packageProductDependencies = (
+				0210FDC42867F61300E56349 /* PopupView */,
+			);
 			productName = Qeii;
 			productReference = 0210FD8D2867CDD200E56349 /* Qeii.app */;
 			productType = "com.apple.product-type.application";
@@ -227,6 +241,9 @@
 				Base,
 			);
 			mainGroup = 0210FD842867CDD100E56349;
+			packageReferences = (
+				0210FDC32867F61200E56349 /* XCRemoteSwiftPackageReference "PopupView" */,
+			);
 			productRefGroup = 0210FD8E2867CDD200E56349 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -269,8 +286,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0206B31C2867F9850081342B /* TestView.swift in Sources */,
+				0206B31E286804120081342B /* AddRecordView.swift in Sources */,
 				0210FD9A2867CDD700E56349 /* Persistence.swift in Sources */,
 				0210FD9D2867CDD700E56349 /* Qeii.xcdatamodeld in Sources */,
+				0206B320286898B50081342B /* Keyboard.swift in Sources */,
 				0210FD932867CDD200E56349 /* ContentView.swift in Sources */,
 				0210FDC02867CEF100E56349 /* HomeView.swift in Sources */,
 				0210FD912867CDD200E56349 /* QeiiApp.swift in Sources */,
@@ -593,6 +613,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0210FDC32867F61200E56349 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0210FDC42867F61300E56349 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0210FDC32867F61200E56349 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0210FD9B2867CDD700E56349 /* Qeii.xcdatamodeld */ = {
