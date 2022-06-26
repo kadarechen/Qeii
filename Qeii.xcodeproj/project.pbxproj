@@ -16,6 +16,8 @@
 		0210FDA72867CDD700E56349 /* QeiiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDA62867CDD700E56349 /* QeiiTests.swift */; };
 		0210FDB12867CDD700E56349 /* QeiiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDB02867CDD700E56349 /* QeiiUITests.swift */; };
 		0210FDB32867CDD700E56349 /* QeiiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDB22867CDD700E56349 /* QeiiUITestsLaunchTests.swift */; };
+		0210FDC02867CEF100E56349 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDBF2867CEF100E56349 /* HomeView.swift */; };
+		0210FDC22867D16800E56349 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDC12867D16700E56349 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		0210FDAC2867CDD700E56349 /* QeiiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QeiiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0210FDB02867CDD700E56349 /* QeiiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QeiiUITests.swift; sourceTree = "<group>"; };
 		0210FDB22867CDD700E56349 /* QeiiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QeiiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0210FDBF2867CEF100E56349 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0210FDC12867D16700E56349 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 				0210FD992867CDD700E56349 /* Persistence.swift */,
 				0210FD9B2867CDD700E56349 /* Qeii.xcdatamodeld */,
 				0210FD962867CDD700E56349 /* Preview Content */,
+				0210FDBF2867CEF100E56349 /* HomeView.swift */,
+				0210FDC12867D16700E56349 /* Constants.swift */,
 			);
 			path = Qeii;
 			sourceTree = "<group>";
@@ -266,7 +272,9 @@
 				0210FD9A2867CDD700E56349 /* Persistence.swift in Sources */,
 				0210FD9D2867CDD700E56349 /* Qeii.xcdatamodeld in Sources */,
 				0210FD932867CDD200E56349 /* ContentView.swift in Sources */,
+				0210FDC02867CEF100E56349 /* HomeView.swift in Sources */,
 				0210FD912867CDD200E56349 /* QeiiApp.swift in Sources */,
+				0210FDC22867D16800E56349 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
