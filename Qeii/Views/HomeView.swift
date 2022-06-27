@@ -10,6 +10,8 @@ import PopupView
 
 struct HomeView: View {
     
+    @EnvironmentObject var model:ViewModel
+    
     @State var showAddRecordView = false
     
     let columns = [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)]
@@ -17,8 +19,9 @@ struct HomeView: View {
     
     var body: some View {
         GeometryReader { _ in
-            ZStack {
+            ZStack(alignment: .top) {
                 Rectangle()
+                    .frame(height: 500.0)
                     .ignoresSafeArea()
                     .foregroundColor(Color(Constants.backgroundColor))
                 VStack {
@@ -28,7 +31,7 @@ struct HomeView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                         Spacer()
-                        Text("136.38")
+                        Text("156.38")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -45,19 +48,19 @@ struct HomeView: View {
                             
                         } label: {
                             Text("Budget: 300")
-                                                    .font(.body)
-                                                    .foregroundColor(.white)
+                                .font(.body)
+                                .foregroundColor(.white)
                             Image(systemName: Constants.budgetModifer)
                                 .font(.body)
                                 .foregroundColor(.white)
                         }
-
+                        
                     }
                     .padding(.horizontal)
                     
                     ZStack(alignment: .leading) {
                         Capsule()
-
+                        
                             .frame(height: 22.0)
                             .foregroundColor(Color(Constants.progressBarColorGray))
                         Capsule()
@@ -103,8 +106,16 @@ struct HomeView: View {
             .popover(isPresented: $showAddRecordView) {
                 AddRecordView(showAddRecordView: $showAddRecordView)
             }
-        
+            
         }.ignoresSafeArea(.keyboard, edges: .bottom)
+            .popup(isPresented: $model.showNotification,type: .floater(), position: .top, autohideIn: 2) {
+                Text("Added!")
+                    .font(.title3)
+                    .foregroundColor(Color(Constants.progressBarColor))
+                    .frame(width: 200, height: 60)
+                    .background(.white)
+                    .cornerRadius(15)
+            }
     }
 }
 

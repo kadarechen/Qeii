@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AddRecordView: View {
     
+    @EnvironmentObject var model:ViewModel
+    
     @State var note: String = ""
     @Binding var showAddRecordView: Bool
     
@@ -23,7 +25,7 @@ struct AddRecordView: View {
                             .foregroundColor(Color(Constants.categoryTitleColor))
                     }
                     Spacer()
-                    Text("289")
+                    Text(model.recordAmount)
                         .font(.system(size: 80))
                         .fontWeight(.semibold)
                         .foregroundColor(Color(Constants.categoryTitleColor))
@@ -51,7 +53,7 @@ struct AddRecordView: View {
                 HStack {
                     Button {
                         showAddRecordView = false
-                        //TO-DO: add record
+                        model.addRecord()
                     } label: {
                         ZStack {
                             Rectangle()

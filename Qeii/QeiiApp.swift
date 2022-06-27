@@ -15,7 +15,8 @@ struct QeiiApp: App {
         WindowGroup {
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            HomeView()
+            LaunchView()
+                .environmentObject(ViewModel())
         }
     }
 }

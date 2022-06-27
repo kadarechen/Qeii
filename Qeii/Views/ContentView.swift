@@ -8,6 +8,8 @@
 import SwiftUI
 import CoreData
 
+//TODO: coredata
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 

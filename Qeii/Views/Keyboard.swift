@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Keyboard: View {
     
+    @EnvironmentObject var model:ViewModel
+    
     var gridItems = [GridItem(.flexible(),spacing: 5), GridItem(.flexible(), spacing: 5), GridItem(.flexible(),spacing: 5), GridItem(.flexible(),spacing: 5)]
     var calculateNum = "123+4560789-".map{String($0)}
     
@@ -16,7 +18,7 @@ struct Keyboard: View {
         LazyVGrid(columns: gridItems, spacing: 5) {
             ForEach(calculateNum, id: \.self) { symbol in
                 Button {
-                    
+                    model.AddRecordNumButtonPressed(with: symbol)
                 } label: {
                     ZStack {
                         Rectangle()
