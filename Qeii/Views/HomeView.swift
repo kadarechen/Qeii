@@ -15,7 +15,7 @@ struct HomeView: View {
     @State var showAddRecordView = false
     
     let columns = [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)]
-    let categories = [0,1,2,3,4]
+//    let categories = [0,1,2,3,4]
     
     var body: some View {
         GeometryReader { _ in
@@ -75,7 +75,7 @@ struct HomeView: View {
                             .foregroundColor(.white)
                             .cornerRadius(27)
                         LazyVGrid(columns: columns, spacing: 15) {
-                            ForEach(categories, id: \.self) {_ in
+                            ForEach(model.categories, id: \.self) {category in
                                 Button{
                                     showAddRecordView = true
                                 } label: {
@@ -85,14 +85,50 @@ struct HomeView: View {
                                             .foregroundColor(Color(Constants.categoryGridBGColor))
                                             .cornerRadius(16)
                                         VStack {
-                                            Text("🥘")
+                                            Text(category.icon)
                                                 .font(.system(size: 58))
-                                            Text("Lunch")
+                                            Text(category.title)
                                                 .foregroundColor(Color(Constants.categoryTitleColor))
                                         }
                                     }
                                 }
                             }
+                            
+                            Button{
+                                
+                            } label: {
+                                ZStack {
+                                    Rectangle()
+                                        .frame(height: 120)
+//                                        .foregroundColor(Color(Constants.progressBarColorGray))
+                                        .foregroundColor(.gray)
+                                        .cornerRadius(16)
+                                    VStack {
+                                        Text("💻")
+                                            .font(.system(size: 58))
+                                        Text("Extra")
+                                            .foregroundColor(Color(Constants.categoryTitleColor))
+                                    }
+                                }
+                            }
+                            
+                            Button{
+                                
+                            } label: {
+                                ZStack {
+                                    Rectangle()
+                                        .frame(height: 120)
+                                        .foregroundColor(.gray)
+                                        .cornerRadius(16)
+                                    VStack {
+                                        Text("👩‍🔧")
+                                            .font(.system(size: 58))
+                                        Text("Manage")
+                                            .foregroundColor(Color(Constants.categoryTitleColor))
+                                    }
+                                }
+                            }
+                            
                         }
                         .padding()
                     }

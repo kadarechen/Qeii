@@ -21,7 +21,7 @@ struct AddRecordView: View {
                     VStack {
                         Text("🥘")
                             .font(.system(size: 58))
-                        Text("Lunch")
+                        Text("Regular")
                             .foregroundColor(Color(Constants.categoryTitleColor))
                     }
                     Spacer()

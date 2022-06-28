@@ -6,12 +6,48 @@
 //
 
 import Foundation
+import CoreData
 
 class ViewModel:ObservableObject {
+    
+    
+    
+    let firstRun = UserDefaults.standard.bool(forKey: "firstRun") as Bool
     
     @Published var recordAmount = "0"  //record the amount being entered by the user currently
     
     @Published var showNotification = false
+    
+    @Published var categories = [Category]()
+    
+    init() {
+        let icons = ["🥘","🍩","☕️","🚌", "📖"]
+        let title = ["Regular", "Snacks", "Coffee", "Transport", "Books"]
+        for i in 0...4 {
+            let category = Category(icon: icons[i], title: title[i])
+            categories.append(category)
+        }
+        
+        if firstRun {
+            
+        } else {
+            runFirst()
+        }
+    }
+    
+    func runFirst() {
+        print("FIRST RUN!")
+        
+        //load default categories data
+        let icons = ["🥘","🍩","☕️","🚌", "📖"]
+        let title = ["Regular", "Snacks", "Coffee", "Transport", "Books"]
+        for i in 0...4 {
+            let category = Category(icon: icons[i], title: title[i])
+            categories.append(category)
+        }
+        
+        UserDefaults.standard.set(true, forKey: "firstRun")
+    }
     
     func AddRecordNumButtonPressed(with symbol: String) {
         if symbol == "+" || symbol == "-" {
