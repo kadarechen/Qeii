@@ -12,5 +12,5 @@ So I decided to develop such an application myself. The project is still a work 
 
 Here are some of the UI that have been implemented: 
 
-![image](https://user-images.githubusercontent.com/37061310/175996569-68ffe1f1-28e9-400f-8835-06175d26a276.png)
+![IMG_7497](https://user-images.githubusercontent.com/37061310/176326544-3d67cd1a-2b75-4657-a36c-51dc3f3c512b.jpeg)
 
