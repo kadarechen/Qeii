@@ -91,6 +91,7 @@ struct AddRecordView: View {
             
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .interactiveDismissDisabled()
     }
 }
 

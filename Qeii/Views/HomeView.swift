@@ -103,10 +103,6 @@ struct HomeView: View {
                                 
                             }
                             .padding([.top,.leading,.trailing])
-//                            .onAppear {
-////                                widthOfGridItem = Double(self.columns[0].size)
-//                                print(self.columns[0].size)
-//                            }
                             
                             Button{
                                 
@@ -135,7 +131,6 @@ struct HomeView: View {
                                         Text("Add a record that is not counted in the monthly expense analysis view. ")
                                             .font(.body)
                                             .padding()
-//                                            .foregroundColor(Color(Constants.categoryTitleColor))
                                             .foregroundColor(.gray)
                                     }
                                 }
@@ -178,10 +173,6 @@ struct HomeView: View {
             }
     }
     
-    func getWidthAndPretendToMakeAView(_ geo: GeometryProxy) -> some View {
-        model.widthOfGridItem = geo.size.width
-        return Text("").frame(width: 0.1, height: 0.1)
-    }
 }
 
 struct HomeView_Previews: PreviewProvider {

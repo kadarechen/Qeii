@@ -12,7 +12,7 @@ struct Keyboard: View {
     @EnvironmentObject var model:ViewModel
     
     var gridItems = [GridItem(.flexible(),spacing: 5), GridItem(.flexible(), spacing: 5), GridItem(.flexible(),spacing: 5), GridItem(.flexible(),spacing: 5)]
-    var calculateNum = "123+4560789-".map{String($0)}
+    var calculateNum = "123d4560789+".map{String($0)}
     
     var body: some View {
         LazyVGrid(columns: gridItems, spacing: 5) {
@@ -20,13 +20,24 @@ struct Keyboard: View {
                 Button {
                     model.AddRecordNumButtonPressed(with: symbol)
                 } label: {
-                    ZStack {
-                        Rectangle()
-                            .frame(height: 55)
-                            .foregroundColor(Color(Constants.categoryGridBGColor))
-                        Text(symbol)
-                            .foregroundColor(Color(Constants.progressBarColor))
+                    if symbol == "d" {
+                        ZStack {
+                                                Rectangle()
+                                                    .frame(height: 55)
+                                                    .foregroundColor(Color(Constants.categoryGridBGColor))
+                                                Image(systemName: "delete.left")
+                                                    .foregroundColor(Color(Constants.progressBarColor))
+                                            }
+                    } else {
+                        ZStack {
+                                                Rectangle()
+                                                    .frame(height: 55)
+                                                    .foregroundColor(Color(Constants.categoryGridBGColor))
+                                                Text(symbol)
+                                                    .foregroundColor(Color(Constants.progressBarColor))
+                                            }
                     }
+                    
                 }
             }
         }
