@@ -9,14 +9,25 @@ import SwiftUI
 import PopupView
 
 struct TestView: View {
+    
+    @State var a = CGRect()
+    @State var b = EdgeInsets()
+    
+    
     var body: some View {
-        HomeView()
+        GeometryReader { geo in
+            
+        }
+        .onAppear {
+//            self.frameGetter($a, $b)
+            print(a.width)
+        }
             
     }
 }
 
-struct TestView_Previews: PreviewProvider {
-    static var previews: some View {
-        TestView()
-    }
-}
+//struct TestView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TestView()
+//    }
+//}

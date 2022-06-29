@@ -14,8 +14,9 @@ struct HomeView: View {
     
     @State var showAddRecordView = false
     
+    
     let columns = [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)]
-//    let categories = [0,1,2,3,4]
+    //    let categories = [0,1,2,3,4]
     
     var body: some View {
         GeometryReader { _ in
@@ -74,63 +75,83 @@ struct HomeView: View {
                         Rectangle()
                             .foregroundColor(.white)
                             .cornerRadius(27)
-                        LazyVGrid(columns: columns, spacing: 15) {
-                            ForEach(model.categories, id: \.self) {category in
-                                Button{
-                                    showAddRecordView = true
-                                } label: {
-                                    ZStack {
-                                        Rectangle()
-                                            .frame(height: 120)
-                                            .foregroundColor(Color(Constants.categoryGridBGColor))
-                                            .cornerRadius(16)
-                                        VStack {
-                                            Text(category.icon)
-                                                .font(.system(size: 58))
-                                            Text(category.title)
-                                                .foregroundColor(Color(Constants.categoryTitleColor))
+                        VStack(spacing: 0.0) {
+                            LazyVGrid(columns: columns, spacing: 15) {
+                                ForEach(model.categories, id: \.self) {category in
+                                    Button{
+                                        showAddRecordView = true
+                                    } label: {
+
+                                            ZStack {
+                                                Rectangle()
+                                                    .frame(height: 120)
+                                                    .foregroundColor(Color(Constants.categoryGridBGColor))
+                                                    .cornerRadius(16)
+                                                VStack {
+                                                    Text(category.icon ?? "")
+                                                        .font(.system(size: 58))
+                                                    Text(category.title ?? "")
+                                                        .foregroundColor(Color(Constants.categoryTitleColor))
+                                                }
+                                            }
+                                            .readSize { size in
+                                                model.widthOfGridItem = size.width
+                                            }
+                                        
+                                    }
+                                }
+                                
+                            }
+                            .padding([.top,.leading,.trailing])
+//                            .onAppear {
+////                                widthOfGridItem = Double(self.columns[0].size)
+//                                print(self.columns[0].size)
+//                            }
+                            
+                            Button{
+                                
+                            } label: {
+                                ZStack(alignment: .leading) {
+                                    Rectangle()
+                                        .frame(height: 120)
+                                        .foregroundColor(Color(Constants.categoryGridBGColor))
+                                        .cornerRadius(16)
+                                    HStack {
+                                        ZStack {
+                                            Rectangle()
+                                                .frame(width: model.widthOfGridItem, height: 120)
+                                                .foregroundColor(Color(Constants.categoryGridBGColor))
+                                                .cornerRadius(16)
+                                            
+                                                VStack {
+                                                    Text("💻")
+                                                        .font(.system(size: 58))
+                                                    Text("Extra")
+                                                        .foregroundColor(Color(Constants.categoryTitleColor))
+                                                }
+                                                
+                                            
                                         }
+                                        Text("Add a record that is not counted in the monthly expense analysis view. ")
+                                            .font(.body)
+                                            .padding()
+//                                            .foregroundColor(Color(Constants.categoryTitleColor))
+                                            .foregroundColor(.gray)
                                     }
                                 }
+                                .padding(.horizontal)
+                                .padding(.top, 15.0)
                             }
                             
                             Button{
                                 
                             } label: {
-                                ZStack {
-                                    Rectangle()
-                                        .frame(height: 120)
-//                                        .foregroundColor(Color(Constants.progressBarColorGray))
-                                        .foregroundColor(.gray)
-                                        .cornerRadius(16)
-                                    VStack {
-                                        Text("💻")
-                                            .font(.system(size: 58))
-                                        Text("Extra")
-                                            .foregroundColor(Color(Constants.categoryTitleColor))
-                                    }
-                                }
+                                Image(systemName: "pencil.circle.fill")
+                                    .font(.system(size: 35))
+                                    .padding()
                             }
-                            
-                            Button{
-                                
-                            } label: {
-                                ZStack {
-                                    Rectangle()
-                                        .frame(height: 120)
-                                        .foregroundColor(.gray)
-                                        .cornerRadius(16)
-                                    VStack {
-                                        Text("👩‍🔧")
-                                            .font(.system(size: 58))
-                                        Text("Manage")
-                                            .foregroundColor(Color(Constants.categoryTitleColor))
-                                    }
-                                }
-                            }
-                            
                         }
-                        .padding()
+                        
                     }
                     .padding(.top)
                     
@@ -152,11 +173,36 @@ struct HomeView: View {
                     .background(.white)
                     .cornerRadius(15)
             }
+            .onAppear {
+                model.fetchAllCategories()
+            }
+    }
+    
+    func getWidthAndPretendToMakeAView(_ geo: GeometryProxy) -> some View {
+        model.widthOfGridItem = geo.size.width
+        return Text("").frame(width: 0.1, height: 0.1)
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().environmentObject(ViewModel())
     }
+}
+
+extension View {
+  func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
+    background(
+      GeometryReader { geometryProxy in
+        Color.clear
+          .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
+      }
+    )
+    .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
+  }
+}
+
+private struct SizePreferenceKey: PreferenceKey {
+  static var defaultValue: CGSize = .zero
+  static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }

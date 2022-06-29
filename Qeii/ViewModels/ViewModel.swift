@@ -20,14 +20,9 @@ class ViewModel:ObservableObject {
     
     @Published var categories = [Category]()
     
+    @Published var widthOfGridItem = 0.0
+    
     init() {
-        let icons = ["🥘","🍩","☕️","🚌", "📖"]
-        let title = ["Regular", "Snacks", "Coffee", "Transport", "Books"]
-        for i in 0...4 {
-            let category = Category(icon: icons[i], title: title[i])
-            categories.append(category)
-        }
-        
         if firstRun {
             
         } else {
@@ -39,14 +34,13 @@ class ViewModel:ObservableObject {
         print("FIRST RUN!")
         
         //load default categories data
-        let icons = ["🥘","🍩","☕️","🚌", "📖"]
-        let title = ["Regular", "Snacks", "Coffee", "Transport", "Books"]
-        for i in 0...4 {
-            let category = Category(icon: icons[i], title: title[i])
-            categories.append(category)
-        }
+        CoreDataManager.shared.createDefaultCategories()
         
         UserDefaults.standard.set(true, forKey: "firstRun")
+    }
+    
+    func fetchAllCategories() {
+        categories =  CoreDataManager.shared.fetchAllCategories()
     }
     
     func AddRecordNumButtonPressed(with symbol: String) {
@@ -69,3 +63,12 @@ class ViewModel:ObservableObject {
         //TODO: add record - waiting for coredata implimentation
     }
 }
+
+//struct CategoryViewModel {
+//
+//    let category: Category
+//
+//    var id:
+//
+//    var title
+//}

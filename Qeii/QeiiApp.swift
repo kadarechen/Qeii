@@ -17,6 +17,7 @@ struct QeiiApp: App {
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
             LaunchView()
                 .environmentObject(ViewModel())
+//            TestView()
         }
     }
 }
