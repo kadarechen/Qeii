@@ -8,19 +8,45 @@
 import Foundation
 import CoreData
 
+enum pageStatus {
+    case normal
+    case trashBinTapped
+    case draging
+    case dragEnterTrashBin
+}
+
 class ViewModel:ObservableObject {
     
-    
+    // MARK: - systom overall
     
     let firstRun = UserDefaults.standard.bool(forKey: "firstRun") as Bool
+    @Published var categories = [Category]()
+    var extraCategory:Category?
     
+    // MARK: - Information of record currently being added
     @Published var recordAmount = "0"  //record the amount being entered by the user currently
-    
+    @Published var note = ""
+    @Published var category:Category?
     @Published var showNotification = false
     
-    @Published var categories = [Category]()
-    
+    // MARK: - view frame
     @Published var widthOfGridItem = 0.0
+    
+    // MARK: - drag&drop
+    @Published var currentGrugingCate: Category?
+    @Published var lastGrugingCate: Category?
+    @Published var editingHomeViewStatus = pageStatus.normal
+    @Published var trashBinWiggle = false
+    var attempts = false
+    
+    func wiggleDifferenciator() -> Double{
+        attempts.toggle()
+        if attempts {
+            return 4.0
+        } else {
+            return -4.0
+        }
+    }
     
     init() {
         if firstRun {
@@ -28,7 +54,11 @@ class ViewModel:ObservableObject {
         } else {
             runFirst()
         }
+        fetchAllCategories()
     }
+    
+    
+    // MARK: - onload
     
     func runFirst() {
         print("FIRST RUN!")
@@ -41,11 +71,35 @@ class ViewModel:ObservableObject {
     
     func fetchAllCategories() {
         categories =  CoreDataManager.shared.fetchAllCategories()
+        for category in categories {
+            if category.title == "Extra" {
+                extraCategory = category
+            }
+        }
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(paths[0])
+    }
+    
+    
+    // MARK: - others
+    
+    func addRecordButtonPressed(category:Category) {
+        let amount = Double(recordAmount)!
+        CoreDataManager.shared.addRecord(amount: amount, category: category, note: note)
+        recordAmount = "0"
+        note = ""
     }
     
     func AddRecordNumButtonPressed(with symbol: String) {
         if symbol == "+" || symbol == "-" {
             //TODO: call Calculate
+        } else if symbol == "d" {
+            if recordAmount != "0" {
+                recordAmount.removeLast()
+                if recordAmount == "" {
+                    recordAmount = "0"
+                }
+            }
         } else {
             if recordAmount == "0" {
                 recordAmount = symbol
@@ -61,14 +115,14 @@ class ViewModel:ObservableObject {
             self.showNotification = false
         }
         //TODO: add record - waiting for coredata implimentation
+        let amount = Double(recordAmount)!
+        CoreDataManager.shared.addRecord(amount: amount, category: category!, note: note)
+        recordAmount = "0"
+        note = ""
+    }
+    
+    func cleanAmount() {
+        recordAmount = "0"
     }
 }
 
-//struct CategoryViewModel {
-//
-//    let category: Category
-//
-//    var id:
-//
-//    var title
-//}

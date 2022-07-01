@@ -27,15 +27,15 @@ class CoreDataManager {
     }
     
     func createDefaultCategories() {
-        let icons = ["🥘","🍩","☕️","🚌", "📖"]
-        let title = ["Regular", "Snacks", "Coffee", "Transport", "Books"]
-        for i in 0...4 {
+        let icons = ["🥘","🍩","☕️","🚌", "📖", "💻"]
+        let title = ["Regular", "Snacks", "Coffee", "Transport", "Books", "Extra"]
+        for i in 0..<icons.count {
             let category = Category(context: CoreDataManager.shared.viewContext)
             category.title = title[i]
             category.icon = icons[i]
             category.timestamp = Date.now
             category.valid = true
-            category.sorting = 0 //temp
+            category.sorting = Int64(i)
             
             
             CoreDataManager.shared.save()
@@ -54,11 +54,24 @@ class CoreDataManager {
     
     func fetchAllCategories() -> [Category] {
         let request: NSFetchRequest<Category> = Category.fetchRequest()
+        let sort = NSSortDescriptor(key: "sorting", ascending: true)
+        request.sortDescriptors = [sort]
         do {
-            return try viewContext.fetch(request)
+            let results = try viewContext.fetch(request)
+//            viewContext.reset()
+            return results
         } catch {
             print("Fetch all categories error! ")
             return []
         }
+    }
+    
+    func addRecord(amount: Double, category:Category, note: String) {
+        let record = Record(context: CoreDataManager.shared.viewContext)
+        record.category = category
+        record.note = note
+        record.amount = amount
+        
+        save()
     }
 }

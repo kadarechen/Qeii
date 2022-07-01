@@ -13,10 +13,11 @@ struct HomeView: View {
     @EnvironmentObject var model:ViewModel
     
     @State var showAddRecordView = false
+    @State var showEditingCategoriesView = false
     
     
     let columns = [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)]
-    //    let categories = [0,1,2,3,4]
+    
     
     var body: some View {
         GeometryReader { _ in
@@ -78,10 +79,11 @@ struct HomeView: View {
                         VStack(spacing: 0.0) {
                             LazyVGrid(columns: columns, spacing: 15) {
                                 ForEach(model.categories, id: \.self) {category in
-                                    Button{
-                                        showAddRecordView = true
-                                    } label: {
-
+                                    if category.title != "Extra" {
+                                        Button{
+                                            model.category = category
+                                            showAddRecordView = true
+                                        } label: {
                                             ZStack {
                                                 Rectangle()
                                                     .frame(height: 120)
@@ -97,15 +99,28 @@ struct HomeView: View {
                                             .readSize { size in
                                                 model.widthOfGridItem = size.width
                                             }
-                                        
+                                            .opacity(model.currentGrugingCate?.title == category.title ? 0.01 : 1)
+                                            
+                                        }
+                                        .gesture(DragGesture().onEnded({ value in
+                                            model.currentGrugingCate = nil
+                                        }))
+                                        .onDrag{
+                                            model.currentGrugingCate = category
+                                            model.lastGrugingCate = category
+                                            return NSItemProvider()
+                                        }
+                                        .onDrop(of: [.url], delegate: CategoriesSortDropViewDelegate(category: category, model: model))
                                     }
+                                    
                                 }
                                 
                             }
                             .padding([.top,.leading,.trailing])
                             
                             Button{
-                                
+                                model.category = model.extraCategory
+                                showAddRecordView = true
                             } label: {
                                 ZStack(alignment: .leading) {
                                     Rectangle()
@@ -119,13 +134,13 @@ struct HomeView: View {
                                                 .foregroundColor(Color(Constants.categoryGridBGColor))
                                                 .cornerRadius(16)
                                             
-                                                VStack {
-                                                    Text("💻")
-                                                        .font(.system(size: 58))
-                                                    Text("Extra")
-                                                        .foregroundColor(Color(Constants.categoryTitleColor))
-                                                }
-                                                
+                                            VStack {
+                                                Text("💻")
+                                                    .font(.system(size: 58))
+                                                Text("Extra")
+                                                    .foregroundColor(Color(Constants.categoryTitleColor))
+                                            }
+                                            
                                             
                                         }
                                         Text("Add a record that is not counted in the monthly expense analysis view. ")
@@ -139,7 +154,7 @@ struct HomeView: View {
                             }
                             
                             Button{
-                                
+                                showEditingCategoriesView = true
                             } label: {
                                 Image(systemName: "pencil.circle.fill")
                                     .font(.system(size: 35))
@@ -158,6 +173,12 @@ struct HomeView: View {
             .popover(isPresented: $showAddRecordView) {
                 AddRecordView(showAddRecordView: $showAddRecordView)
             }
+//            .popover(isPresented: $showEditingCategoriesView) {
+//                EditingHomeView()
+//            }
+            .fullScreenCover(isPresented: $showEditingCategoriesView) {
+                EditingHomeView()
+            }
             
         }.ignoresSafeArea(.keyboard, edges: .bottom)
             .popup(isPresented: $model.showNotification,type: .floater(), position: .top, autohideIn: 2) {
@@ -168,9 +189,7 @@ struct HomeView: View {
                     .background(.white)
                     .cornerRadius(15)
             }
-            .onAppear {
-                model.fetchAllCategories()
-            }
+            .onDrop(of: [.url], delegate: HelperDropViewDelegate(model: model))
     }
     
 }
@@ -182,18 +201,20 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 extension View {
-  func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
-    background(
-      GeometryReader { geometryProxy in
-        Color.clear
-          .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
-      }
-    )
-    .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
-  }
+    func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
+        background(
+            GeometryReader { geometryProxy in
+                Color.clear
+                    .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
+            }
+        )
+        .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
+    }
 }
 
 private struct SizePreferenceKey: PreferenceKey {
-  static var defaultValue: CGSize = .zero
-  static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }
+
+

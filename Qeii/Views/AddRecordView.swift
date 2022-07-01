@@ -19,9 +19,9 @@ struct AddRecordView: View {
             VStack {
                 HStack {
                     VStack {
-                        Text("🥘")
+                        Text((model.category?.icon)!)
                             .font(.system(size: 58))
-                        Text("Regular")
+                        Text((model.category?.title)!)
                             .foregroundColor(Color(Constants.categoryTitleColor))
                     }
                     Spacer()
@@ -67,6 +67,7 @@ struct AddRecordView: View {
                     }
                     
                     Button {
+                        model.cleanAmount()
                         showAddRecordView = false
                     } label: {
                         ZStack {

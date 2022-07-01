@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LaunchView: View {
+    @EnvironmentObject var model:ViewModel
+    
     var body: some View {
         TabView {
             HomeView()
