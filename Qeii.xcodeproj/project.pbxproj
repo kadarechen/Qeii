@@ -22,6 +22,7 @@
 		0210FDC02867CEF100E56349 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDBF2867CEF100E56349 /* HomeView.swift */; };
 		0210FDC22867D16800E56349 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210FDC12867D16700E56349 /* Constants.swift */; };
 		0210FDC52867F61300E56349 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 0210FDC42867F61300E56349 /* PopupView */; };
+		027AFE0D2870BA43008116F9 /* trashBinDropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027AFE0C2870BA43008116F9 /* trashBinDropViewDelegate.swift */; };
 		02B5831A286E86EB00A717ED /* CategoriesSortDropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B58319286E86EB00A717ED /* CategoriesSortDropViewDelegate.swift */; };
 		02B5831C286EA9DB00A717ED /* HelperDropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B5831B286EA9DB00A717ED /* HelperDropViewDelegate.swift */; };
 		02B58320286F3F7300A717ED /* EditingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B5831F286F3F7300A717ED /* EditingHomeView.swift */; };
@@ -65,6 +66,7 @@
 		0210FDB22867CDD700E56349 /* QeiiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QeiiUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0210FDBF2867CEF100E56349 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0210FDC12867D16700E56349 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		027AFE0C2870BA43008116F9 /* trashBinDropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trashBinDropViewDelegate.swift; sourceTree = "<group>"; };
 		02B58319286E86EB00A717ED /* CategoriesSortDropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSortDropViewDelegate.swift; sourceTree = "<group>"; };
 		02B5831B286EA9DB00A717ED /* HelperDropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperDropViewDelegate.swift; sourceTree = "<group>"; };
 		02B5831F286F3F7300A717ED /* EditingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingHomeView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				02F0E7B72869F99800BABB14 /* ViewModel.swift */,
 				02F0E7BC286BADA100BABB14 /* CoreDataManager.swift */,
 				02B58319286E86EB00A717ED /* CategoriesSortDropViewDelegate.swift */,
+				027AFE0C2870BA43008116F9 /* trashBinDropViewDelegate.swift */,
 				02B5831B286EA9DB00A717ED /* HelperDropViewDelegate.swift */,
 			);
 			path = ViewModels;
@@ -359,6 +362,7 @@
 				02B5831A286E86EB00A717ED /* CategoriesSortDropViewDelegate.swift in Sources */,
 				0210FD912867CDD200E56349 /* QeiiApp.swift in Sources */,
 				0210FDC22867D16800E56349 /* Constants.swift in Sources */,
+				027AFE0D2870BA43008116F9 /* trashBinDropViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

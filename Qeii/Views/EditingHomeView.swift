@@ -11,17 +11,32 @@ struct EditingHomeView: View {
     
     @EnvironmentObject var model: ViewModel
     
+    @Binding var showEditingCategoriesView: Bool
+    
     
     let columns = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
     
     var body: some View {
         
         ZStack {
-            Rectangle()
-                .foregroundColor(Color(Constants.backgroundColor))
-                .ignoresSafeArea()
+            switch model.editingHomeViewStatus {
+            case .draging: Rectangle()
+                    .foregroundColor(Color(Constants.trashBinColorWhenDraging))
+                    .ignoresSafeArea()
+                    .onDrop(of: [.url], delegate: trashBinDropViewDelegate(model: model))
+            case .dragEnterTrashBin: Rectangle()
+                    .foregroundColor(Color(Constants.trashBinColorWhenDragingEnter))
+                    .ignoresSafeArea()
+                    .onDrop(of: [.url], delegate: trashBinDropViewDelegate(model: model))
+            default: Rectangle()
+                    .foregroundColor(Color(Constants.normalTrashBinColor))
+                    .ignoresSafeArea()
+                    .onDrop(of: [.url], delegate: trashBinDropViewDelegate(model: model))
+            
+            }
             VStack {
                 TrashBinView()
+                    .onDrop(of: [.url], delegate: trashBinDropViewDelegate(model: model))
                 
                 ZStack {
                     Rectangle()
@@ -55,6 +70,10 @@ struct EditingHomeView: View {
                                         .onDrag{
                                             model.currentGrugingCate = category
                                             model.lastGrugingCate = category
+                                            withAnimation {
+                                                model.editingHomeViewStatus = .draging
+                                            }
+                                            
                                             return NSItemProvider()
                                         }
                                         .rotationEffect(.degrees(model.trashBinWiggle ? model.wiggleDifferenciator() : 0))
@@ -80,7 +99,7 @@ struct EditingHomeView: View {
                         
                         HStack(spacing: 7.5) {
                             Button {
-                                
+                                showEditingCategoriesView.toggle()
                             } label: {
                                 ZStack {
                                     Rectangle()
@@ -94,7 +113,7 @@ struct EditingHomeView: View {
                             }
                             
                             Button {
-                                
+                                showEditingCategoriesView.toggle()
                             } label: {
                                 ZStack {
                                     Rectangle()
@@ -123,12 +142,12 @@ struct EditingHomeView: View {
     }
 }
 
-struct EditingHomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditingHomeView()
-            .environmentObject(ViewModel())
-    }
-}
+//struct EditingHomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditingHomeView()
+//            .environmentObject(ViewModel())
+//    }
+//}
 
 
 
@@ -158,12 +177,16 @@ struct TrashBinView: View {
     @EnvironmentObject var model:ViewModel
     
     var body: some View {
-        HStack(spacing: 10){
+        HStack(spacing: 0){
             Image(systemName: "trash")
                 .font(.system(size: 30))
                 .padding([.top, .bottom], 3)
-            if model.editingHomeViewStatus == .trashBinTapped {
-                Text("Long press on a category and drag it here to delete it. ")
+
+            switch model.editingHomeViewStatus {
+            case .trashBinTapped: Text("Long press on a category and drag it here to delete it. ").padding([.leading], 10)
+            case .draging: Text("Drag here to delete the category. ").padding([.leading], 10)
+            case .dragEnterTrashBin: Text("Release to delete. ").padding([.leading], 10)
+            case .normal: Text("").frame(width: 0, height: 0)
             }
         }
         .padding()

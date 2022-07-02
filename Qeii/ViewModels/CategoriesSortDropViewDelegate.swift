@@ -15,6 +15,9 @@ struct CategoriesSortDropViewDelegate: DropDelegate {
     
     func performDrop(info: DropInfo) -> Bool {
         model.currentGrugingCate = nil
+        withAnimation {
+            model.editingHomeViewStatus = .normal
+        }
         print("set to nil")
         return true
     }

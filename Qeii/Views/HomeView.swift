@@ -177,7 +177,7 @@ struct HomeView: View {
 //                EditingHomeView()
 //            }
             .fullScreenCover(isPresented: $showEditingCategoriesView) {
-                EditingHomeView()
+                EditingHomeView(showEditingCategoriesView: $showEditingCategoriesView)
             }
             
         }.ignoresSafeArea(.keyboard, edges: .bottom)

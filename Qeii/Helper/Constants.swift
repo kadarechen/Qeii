@@ -14,4 +14,8 @@ struct Constants {
     static let progressBarColorGray = "ProgressBarGray"
     static let categoryGridBGColor = "CategoryGridBGColor"
     static let categoryTitleColor = "Blue2"
+    
+    static let trashBinColorWhenDraging = "Pink"
+    static let trashBinColorWhenDragingEnter = "Red"
+    static let normalTrashBinColor = "Blue1"
 }
