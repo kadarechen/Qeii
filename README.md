@@ -10,7 +10,11 @@ I eventually found out that there is no such app on the market. They either didn
 
 So I decided to develop such an application myself. The project is still a work in progress. Progress may be slow because I am also working on my postgraduate project at the same time. 
 
+**Sourse code here may not always be up to date.**
+
 Here are some of the UI that have been implemented: 
 
 ![IMG_7497](https://user-images.githubusercontent.com/37061310/176326544-3d67cd1a-2b75-4657-a36c-51dc3f3c512b.jpeg)
+![home - 01](https://user-images.githubusercontent.com/37061310/177012687-3f23b2e8-d289-43b8-bf88-35373c454812.gif)
+![editing - 01](https://user-images.githubusercontent.com/37061310/177012693-aba1dcc7-160e-415a-a7a2-dad970c79a50.gif)
 
