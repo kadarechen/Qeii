@@ -14,6 +14,7 @@ struct HomeView: View {
     
     @State var showAddRecordView = false
     @State var showEditingCategoriesView = false
+    @State var showTestView = false
     
     
     let columns = [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)]
@@ -79,7 +80,7 @@ struct HomeView: View {
                         VStack(spacing: 0.0) {
                             LazyVGrid(columns: columns, spacing: 15) {
                                 ForEach(model.categories, id: \.self) {category in
-                                    if category.title != "Extra" {
+                                    if category.title != "" {
                                         Button{
                                             model.category = category
                                             showAddRecordView = true
@@ -154,11 +155,19 @@ struct HomeView: View {
                             }
                             
                             Button{
+                                model.prepareForCategoriesEditing()
                                 showEditingCategoriesView = true
                             } label: {
                                 Image(systemName: "pencil.circle.fill")
                                     .font(.system(size: 35))
                                     .padding()
+                            }
+                            
+                            Button{
+                                model.prepareForCategoriesEditing()
+                                showTestView = true
+                            } label: {
+                                Text("show test")
                             }
                         }
                         
@@ -173,9 +182,9 @@ struct HomeView: View {
             .popover(isPresented: $showAddRecordView) {
                 AddRecordView(showAddRecordView: $showAddRecordView)
             }
-//            .popover(isPresented: $showEditingCategoriesView) {
-//                EditingHomeView()
-//            }
+            .popover(isPresented: $showTestView, content: {
+                TestView()
+            })
             .fullScreenCover(isPresented: $showEditingCategoriesView) {
                 EditingHomeView(showEditingCategoriesView: $showEditingCategoriesView)
             }

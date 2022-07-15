@@ -28,6 +28,7 @@ class ViewModel:ObservableObject {
     @Published var note = ""
     @Published var category:Category?
     @Published var showNotification = false
+    @Published var categoryManager: CategoriesEditModeContainerManager?
     
     // MARK: - view frame
     @Published var widthOfGridItem = 0.0
@@ -123,6 +124,15 @@ class ViewModel:ObservableObject {
     
     func cleanAmount() {
         recordAmount = "0"
+    }
+    
+    func prepareForCategoriesEditing() {
+        var list = [CategoriesEditModeContainer]()
+        for i in 0..<categories.count {
+            let container = CategoriesEditModeContainer(categories[i])
+            list.append(container)
+        }
+        categoryManager = CategoriesEditModeContainerManager(list: list)
     }
 }
 

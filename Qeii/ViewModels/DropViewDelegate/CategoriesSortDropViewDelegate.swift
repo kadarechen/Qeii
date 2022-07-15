@@ -26,35 +26,34 @@ struct CategoriesSortDropViewDelegate: DropDelegate {
         
         model.currentGrugingCate = model.lastGrugingCate
         
-        let fromIndex = model.categories.firstIndex { category in
-            return category.title == model.currentGrugingCate?.title
-        } ?? 0
+        var fromIndex = 0
+        var toIndex = 0
         
-        let toIndex = model.categories.firstIndex { category in
-            return category.title == self.category.title
-        } ?? 0
+        for i in 0..<model.categoryManager!.list.count {
+            if model.categoryManager!.list[i].category.title == model.currentGrugingCate?.title {
+                fromIndex = i
+            } else if model.categoryManager!.list[i].category.title == category.title {
+                toIndex = i
+            }
+        }
+        
         
         if fromIndex != toIndex {
-//            withAnimation {
-//                let temp = model.categories[fromIndex]
-//                model.categories[fromIndex] = model.categories[toIndex]
-//                model.categories[toIndex] = temp
-//            }
             if fromIndex < toIndex {
                 withAnimation {
-                let temp = model.categories[fromIndex]
+                let temp = model.categoryManager!.list[fromIndex]
                 for i in fromIndex..<toIndex {
-                    model.categories[i] = model.categories[i+1]
+                    model.categoryManager!.list[i] = model.categoryManager!.list[i+1]
                 }
-                model.categories[toIndex] = temp
+                model.categoryManager!.list[toIndex] = temp
                 }
             } else {
                 withAnimation {
-                let temp = model.categories[fromIndex]
+                let temp = model.categoryManager!.list[fromIndex]
                 for i in (toIndex+1...fromIndex).reversed() {
-                    model.categories[i] = model.categories[i-1]
+                    model.categoryManager!.list[i] = model.categoryManager!.list[i-1]
                 }
-                model.categories[toIndex] = temp
+                model.categoryManager!.list[toIndex] = temp
                 }
             }
         }

@@ -56,6 +56,8 @@ class CoreDataManager {
         let request: NSFetchRequest<Category> = Category.fetchRequest()
         let sort = NSSortDescriptor(key: "sorting", ascending: true)
         request.sortDescriptors = [sort]
+        let predicate = NSPredicate(format: "title != %@", "Extra")
+        request.predicate = predicate
         do {
             let results = try viewContext.fetch(request)
 //            viewContext.reset()
