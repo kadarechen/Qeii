@@ -22,6 +22,8 @@ class ViewModel:ObservableObject {
     let firstRun = UserDefaults.standard.bool(forKey: "firstRun") as Bool
     @Published var categories = [Category]()
     var extraCategory:Category?
+    @Published var entries = [Record]()
+    @Published var accuracy = 2
     
     // MARK: - Information of record currently being added
     @Published var recordAmount = "0"  //record the amount being entered by the user currently
@@ -83,10 +85,10 @@ class ViewModel:ObservableObject {
     }
     
     func fetchAllEntries() {
-        
+        entries = CoreDataManager.shared.fetchAllEntries()
     }
     
-    // MARK: - others
+    // MARK: - tab1
     
     func addRecordButtonPressed(category:Category) {
         let amount = Double(recordAmount)!
@@ -126,7 +128,7 @@ class ViewModel:ObservableObject {
         recordAmount = "0"
         note = ""
         
-        //TODO: update entry view
+        fetchAllEntries()
     }
     
     func cleanAmount() {
@@ -140,6 +142,16 @@ class ViewModel:ObservableObject {
             list.append(container)
         }
         categoryManager = CategoriesEditModeContainerManager(list: list)
+    }
+    
+    
+    // MARK: - tab2
+    func isNotLastEntry(entry: Record) -> Bool {
+        if entry != entries.last {
+            return true
+        } else {
+            return false
+        }
     }
 }
 

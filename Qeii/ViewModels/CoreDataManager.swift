@@ -68,11 +68,25 @@ class CoreDataManager {
         }
     }
     
+    func fetchAllEntries() -> [Record] {
+        let request: NSFetchRequest<Record> = Record.fetchRequest()
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        request.sortDescriptors = [sort]
+        do {
+            let results = try viewContext.fetch(request)
+            return results
+        } catch {
+            print("Fetch all entries error! ")
+            return []
+        }
+    }
+    
     func addRecord(amount: Double, category:Category, note: String) {
         let record = Record(context: CoreDataManager.shared.viewContext)
         record.category = category
         record.note = note
         record.amount = amount
+        record.date = Date()
         
         save()
     }

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct EntryView: View {
+    
+    @EnvironmentObject var model:ViewModel
+    
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
@@ -42,8 +45,15 @@ struct EntryView: View {
                         .foregroundColor(.white)
                         .cornerRadius(27)
                     ScrollView {
-                        EntryItem()
-                        
+                        ForEach(model.entries, id: \.self) { entry in
+                            Button {
+                                
+                            } label: {
+                                EntryItem(entry: entry)
+                            }
+
+                            
+                        }
                     }
                 }
             }
@@ -51,13 +61,17 @@ struct EntryView: View {
     }
 }
 
-struct EntryView_Previews: PreviewProvider {
-    static var previews: some View {
-        EntryView()
-    }
-}
+//struct EntryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EntryView()
+//    }
+//}
 
 struct EntryItem: View {
+    
+    @EnvironmentObject var model:ViewModel
+    var entry: Record
+    
     var body: some View {
         HStack {
             // icon
@@ -66,7 +80,7 @@ struct EntryItem: View {
                     .frame(width: 60, height: 60)
                     .foregroundColor(Color(Constants.iconBGC))
                     .cornerRadius(15)
-                Text("☕️")
+                Text(entry.category!.icon!)
                     .font(.system(size: 35))
             }
             .padding([.top, .leading, .bottom])
@@ -78,11 +92,12 @@ struct EntryItem: View {
                         
                         // category and date
                         VStack(alignment: .leading) {
-                            Text("Coffee")
+                            Text(entry.category!.title!)
                                 .font(.title3)
                                 .fontWeight(.medium)
+                                .foregroundColor(.black)
                                 .padding(.bottom, 1.0)
-                            Text("2022.7.12 14:23")
+                            Text(entry.date!.formatted())
                                 .foregroundColor(.gray)
                             
                         }
@@ -90,7 +105,7 @@ struct EntryItem: View {
                         Spacer()
                         
                         //amount and indicator
-                        Text("£89.12")
+                        Text("£" + String(format: "%.\(model.accuracy)f", entry.amount))
                             .font(.title3)
                             .fontWeight(.medium)
                         
@@ -100,9 +115,12 @@ struct EntryItem: View {
                     VStack {
                         Rectangle()
                             .foregroundColor(.clear)
-                        Rectangle()
-                            .frame(height: 1)
-                            .foregroundColor(Color(Constants.progressBarColorGray))
+                        if model.isNotLastEntry(entry: entry) {
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(Color(Constants.progressBarColorGray))
+                        }
+                        
                     }
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
