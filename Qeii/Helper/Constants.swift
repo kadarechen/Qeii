@@ -18,4 +18,7 @@ struct Constants {
     static let trashBinColorWhenDraging = "Pink"
     static let trashBinColorWhenDragingEnter = "Red"
     static let normalTrashBinColor = "Blue1"
+    
+    // Entry page
+    static let iconBGC = "Blue_light"
 }

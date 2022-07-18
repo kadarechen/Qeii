@@ -16,7 +16,7 @@ struct LaunchView: View {
                 .tabItem {
                     Label("Home", systemImage: "bag")
                 }
-            Text("RecordView")
+            EntryView()
                 .tabItem {
                     Label("Entry", systemImage: "creditcard")
                 }

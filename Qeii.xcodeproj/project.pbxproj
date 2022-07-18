@@ -31,6 +31,7 @@
 		A9BBA8CA2881E40500F4EC40 /* CategoriesEditModeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBA8C92881E40500F4EC40 /* CategoriesEditModeContainer.swift */; };
 		A9BBA8CC2881EDD100F4EC40 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBA8CB2881EDD100F4EC40 /* TestView.swift */; };
 		A9BBA8CF2881F6D000F4EC40 /* CategoriesSortDropViewDelegateBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBA8CE2881F6D000F4EC40 /* CategoriesSortDropViewDelegateBackup.swift */; };
+		A9D8D7642885C069000EEFBA /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8D7632885C069000EEFBA /* EntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		A9BBA8C92881E40500F4EC40 /* CategoriesEditModeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesEditModeContainer.swift; sourceTree = "<group>"; };
 		A9BBA8CB2881EDD100F4EC40 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		A9BBA8CE2881F6D000F4EC40 /* CategoriesSortDropViewDelegateBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSortDropViewDelegateBackup.swift; sourceTree = "<group>"; };
+		A9D8D7632885C069000EEFBA /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,12 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				02F0E7B12868C5E100BABB14 /* LaunchView.swift */,
-				0210FDBF2867CEF100E56349 /* HomeView.swift */,
-				0206B31D286804110081342B /* AddRecordView.swift */,
-				0206B31F286898B50081342B /* Keyboard.swift */,
-				0210FD922867CDD200E56349 /* ContentView.swift */,
-				02B5831F286F3F7300A717ED /* EditingHomeView.swift */,
-				A9BBA8CB2881EDD100F4EC40 /* TestView.swift */,
+				A9BBA8D02885B8AC00F4EC40 /* Tab1 */,
+				A9BBA8D12885B8C400F4EC40 /* Tab2 */,
+				A9BBA8D22885B8CC00F4EC40 /* Tab3 */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +230,34 @@
 				A9BBA8CE2881F6D000F4EC40 /* CategoriesSortDropViewDelegateBackup.swift */,
 			);
 			path = backup;
+			sourceTree = "<group>";
+		};
+		A9BBA8D02885B8AC00F4EC40 /* Tab1 */ = {
+			isa = PBXGroup;
+			children = (
+				0210FDBF2867CEF100E56349 /* HomeView.swift */,
+				0206B31D286804110081342B /* AddRecordView.swift */,
+				0206B31F286898B50081342B /* Keyboard.swift */,
+				0210FD922867CDD200E56349 /* ContentView.swift */,
+				02B5831F286F3F7300A717ED /* EditingHomeView.swift */,
+				A9BBA8CB2881EDD100F4EC40 /* TestView.swift */,
+			);
+			path = Tab1;
+			sourceTree = "<group>";
+		};
+		A9BBA8D12885B8C400F4EC40 /* Tab2 */ = {
+			isa = PBXGroup;
+			children = (
+				A9D8D7632885C069000EEFBA /* EntryView.swift */,
+			);
+			path = Tab2;
+			sourceTree = "<group>";
+		};
+		A9BBA8D22885B8CC00F4EC40 /* Tab3 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tab3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,6 +409,7 @@
 				02F0E7BD286BADA100BABB14 /* CoreDataManager.swift in Sources */,
 				02B58320286F3F7300A717ED /* EditingHomeView.swift in Sources */,
 				0210FD932867CDD200E56349 /* ContentView.swift in Sources */,
+				A9D8D7642885C069000EEFBA /* EntryView.swift in Sources */,
 				0210FDC02867CEF100E56349 /* HomeView.swift in Sources */,
 				02B5831A286E86EB00A717ED /* CategoriesSortDropViewDelegate.swift in Sources */,
 				0210FD912867CDD200E56349 /* QeiiApp.swift in Sources */,

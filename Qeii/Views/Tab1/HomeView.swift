@@ -61,9 +61,9 @@ struct HomeView: View {
                     }
                     .padding(.horizontal)
                     
+                    // progress bar
                     ZStack(alignment: .leading) {
                         Capsule()
-                        
                             .frame(height: 22.0)
                             .foregroundColor(Color(Constants.progressBarColorGray))
                         Capsule()

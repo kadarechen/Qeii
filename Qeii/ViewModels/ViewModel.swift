@@ -56,6 +56,7 @@ class ViewModel:ObservableObject {
             runFirst()
         }
         fetchAllCategories()
+        fetchAllEntries()
     }
     
     
@@ -77,10 +78,13 @@ class ViewModel:ObservableObject {
                 extraCategory = category
             }
         }
-        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-        print(paths[0])
+//        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+//        print(paths[0])
     }
     
+    func fetchAllEntries() {
+        
+    }
     
     // MARK: - others
     
@@ -110,16 +114,19 @@ class ViewModel:ObservableObject {
         }
     }
     
+    // Run when 'addRecord' button pressed
     func addRecord() {
         showNotification = true
         Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { (timer) in
             self.showNotification = false
         }
-        //TODO: add record - waiting for coredata implimentation
+        
         let amount = Double(recordAmount)!
         CoreDataManager.shared.addRecord(amount: amount, category: category!, note: note)
         recordAmount = "0"
         note = ""
+        
+        //TODO: update entry view
     }
     
     func cleanAmount() {
